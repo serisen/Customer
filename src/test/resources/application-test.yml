@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:12:///db?TC_TMPFS=/testtmpfs:rw
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: customer-service
+      auto-offset-reset: earliest
+    listener:
+      ack-mode: manual
+    admin:
+      auto-create: false
+      properties:
+        allow.auto.create.topics: true
+
+kafka:
+  topics:
+    onboarding-customer: onboarding-customer-topic

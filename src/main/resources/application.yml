@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: dce-onboarding-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dce
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: customer-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: manual
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka:
+  topics:
+    onboarding-customer: onboarding-customer-topic
+
+server:
+  port: 8080
+
+app:
+  s3:
+    bucket: ${APP_S3_BUCKET:customer-bucket}
+    endpoint: ${APP_S3_ENDPOINT:http://localhost:9000}
+    region: ${AWS_REGION:us-east-1}
+aws:
+  access-key: ${AWS_ACCESS_KEY_ID:minioadmin}
+  secret-key: ${AWS_SECRET_ACCESS_KEY:minioadmin123}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: openapi, swagger-ui
+
+sendgrid:
+  api-key: "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"
