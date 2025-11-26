@@ -58,4 +58,4 @@ management:
         include: openapi, swagger-ui
 
 sendgrid:
-  api-key: "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"
+  api-key: "8d45a376-6f5b-44f8-be2a-b3b916327c9a"
