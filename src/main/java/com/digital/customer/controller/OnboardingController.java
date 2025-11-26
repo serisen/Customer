@@ -31,10 +31,10 @@ public class OnboardingController {
     private final S3StorageService s3StorageService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Onboard customer")
+    @Operation(summary = "Customer onboarding - Enter customer information ")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Customer onboarded successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid data")
+            @ApiResponse(responseCode = "201", description = "Customer onboarding request is submitted successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid onboarding data")
     })
     public ResponseEntity<String> onboardCustomer(@Valid @ModelAttribute OnboardingRequestDto requestDto, BindingResult bindingResult) throws IOException {
         validate(bindingResult);

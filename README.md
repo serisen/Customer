@@ -24,6 +24,10 @@ Object url: http://localhost:9000/customer-bucket/<key>
 Kafka-UI:
 http://localhost:8090/
 
+LOCAL RUN
+mvn clean install
+docker-compose up -d
+
 ## TODO
 
 1. Account service should be implemented separately, it should generate IBAN as well.
